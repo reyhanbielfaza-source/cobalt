@@ -18,6 +18,10 @@ WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
 
+RUN apk add --no-cache git && \
+    git -c user.email="cobalt@cobalt" -c user.name="cobalt" init && \
+    git -c user.email="cobalt@cobalt" -c user.name="cobalt" commit --allow-empty -m "cobalt"
+
 USER node
 
 EXPOSE 9000
